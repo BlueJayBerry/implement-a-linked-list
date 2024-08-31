@@ -29,7 +29,10 @@ void insertNodeAtHead(node_t **head, node_t *node_to_insert){
     *head = node_to_insert;
 }
 
-
+void insertNodeAfter(node_t *node_to_insert_after, node_t* new_node){
+    new_node->next = node_to_insert_after->next;
+    node_to_insert_after->next = new_node;
+}
 
 node_t *findNode(node_t *head, int value){
     node_t *temporary = head;
@@ -48,8 +51,10 @@ int main(int argc, char* argv[]){
         tmp = createNewNode(i);
         insertNodeAtHead(&head,tmp);
     }
-    tmp = findNode(head,5); 
-    printf("found node with value %d\n", tmp-> value);
+    tmp = findNode(head, 10); 
+    printf("found node with value %d\n", tmp->value);
+
+    insertNodeAfter(tmp, createNewNode(12));
 
     printList(head);
     return 0;
