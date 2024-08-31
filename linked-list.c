@@ -43,6 +43,19 @@ node_t *findNode(node_t *head, int value){
     return NULL;
 }
 
+node_t *findLastNode(node_t *head){
+    node_t *temporary = head;
+    while(temporary->next != NULL){
+        temporary = temporary->next;
+    }
+    return temporary;
+}
+
+void insertAtTail(node_t *tail_node, node_t *node_to_insert){
+    node_to_insert->next = tail_node->next;
+    tail_node->next = node_to_insert;
+}
+
 int main(int argc, char* argv[]){
     node_t *head = NULL;
     node_t *tmp;
@@ -51,10 +64,9 @@ int main(int argc, char* argv[]){
         tmp = createNewNode(i);
         insertNodeAtHead(&head,tmp);
     }
-    tmp = findNode(head, 10); 
-    printf("found node with value %d\n", tmp->value);
-
-    insertNodeAfter(tmp, createNewNode(12));
+     
+    tmp = findLastNode(head);
+    insertAtTail(tmp,createNewNode(23));
 
     printList(head);
     return 0;
