@@ -17,20 +17,25 @@ void printList(node_t *head){
     printf("\n");
 }
 
+node_t *createNewNode(int value){
+    node_t *new_node = malloc(sizeof(node_t));
+    new_node->value = value;
+    new_node->next = NULL;
+    return new_node;
+}
+
 int main(int argc, char* argv[]){
-    node_t *head, *tail;
-    node_t n1,n2,n3,n4;
-    n1.value = 22;
-    n2.value = 7;
-    n3.value = 28;
-    n4.value = 15;
+    node_t *head = NULL;
+    node_t *tmp;
 
-    head = &n2;
-    n2.next = &n1;
-    n1.next = &n4;
-    n3.next = NULL;
-    n4.next = &n3;
+    for(int i = 0; i < 11; i++){
+        tmp = createNewNode(i*2);
+        tmp->next = head;
+        head = tmp;
+    }
+
+    head = tmp->next;
+   
     printList(head);
-
     return 0;
 }
